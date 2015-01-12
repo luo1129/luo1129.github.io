@@ -424,9 +424,9 @@
             -o-animation:sprite1show  2s 4.2s linear 1 forwards;
       }
       .tabs .tab1 .p6.show
-       {  -webkit-animation:luoyu1show  2s  5s linear 1 forwards;
-            -moz-animation:luoyu1show  2s 5s linear 1 forwards;
-            -o-animation:luoyu1show  2s 5s linear 1 forwards;
+       {  -webkit-animation:sprite1show  2s  5s linear 1 forwards;
+            -moz-animation:sprite1show  2s 5s linear 1 forwards;
+            -o-animation:sprite1show  2s 5s linear 1 forwards;
       }
       .tabs .tab2{background: #ffffff;}
       .tabs .tab2 .sprite1
