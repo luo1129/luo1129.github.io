@@ -398,9 +398,9 @@
        }
        .tabs .tab1 .p2.show
        {  
-           -webkit-animation:flip 0.5s 13.2s linear 1 forwards;
-            -moz-animation:flip 0.5s 13.2s linear 1 forwards;
-            -o-animation:flip 0.5s 13.2s linear 1 forwards;
+           -webkit-animation:flip 0.5s 12.2s linear 1 forwards;
+            -moz-animation:flip 0.5s 12.2s linear 1 forwards;
+            -o-animation:flip 0.5s 12.2s linear 1 forwards;
        }
       .tabs .tab1 .p3.show
        {  -webkit-animation:flip  0.5s 8.2s linear 1 forwards;
@@ -565,9 +565,9 @@ font-size: 1em;}
             -o-animation:tab1_sprite  1s  9.2s linear 1 forwards;
        }
        .tabs .tab1 .p2_txt.show{ 
-         -webkit-animation:tab1_sprite  1s 14.2s  linear 1 forwards;
-            -moz-animation:tab1_sprite  1s 14.2s  linear 1 forwards;
-            -o-animation:tab1_sprite 15s 14.2 linear 1 forwards;
+         -webkit-animation:tab1_sprite  1s 13.2s  linear 1 forwards;
+            -moz-animation:tab1_sprite  1s 13.2s  linear 1 forwards;
+            -o-animation:tab1_sprite 15s 13.2 linear 1 forwards;
        }
       .tabs .tab1 .p1_txt.show{ 
          -webkit-animation:tab1_sprite  1s 20s  linear 1 forwards;
