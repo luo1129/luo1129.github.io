@@ -1,11 +1,969 @@
-﻿<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html>
-<body>
+<head lang="zh-CN">
 
-<form action="/example/html5/demo_form.asp" method="get">
-E-mail: <input type="email" name="user_email" /><br />
-<input type="submit" />
-</form>
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="pragram" content="no-cache" />
+    <script src="js/global.js" type="text/javascript"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/zepto.min.js" type="text/javascript"></script>
+    <title></title>
+    <style>
+        /* global */
+        html,body,ul{margin: 0;padding: 0; position: relative;font-family: "幼圆"}
+        ul,ol{list-style: none;}
+        html,body{width: 100%;height: 100%;overflow: hidden;
+          -webkit-user-select: none;-moz-user-select: none;-o-user-select: none;font-size: 62.5%;}
+        body{background: #f5f5f5;font:12px/21px ; color: #33234f;}
+        a{color: #33234f;text-decoration: none;}
+        a,button{-webkit-appearance:none;-moz-appearance:none;}
+        a:hover,button:hover,span:hover,div:hover{-webkit-tap-highlight-color:transparent;}
+        a{ text-decoration:none; color:#157efb; }
+        a::-webkit-focus-inner,button::-webkit-focus-inner,span::-webkit-focus-inner,div::-webkit-focus-inner{ 
+            background-color:rgba(0,0,0,0); -webkit-tap-highlight-color:rgba(0,0,0,0); }
 
+        #music_btn{position: absolute; top:3%; right:7%;z-index: 1;display: block;}
+        @font-face{font-family:'幼圆1';src:url(img/MFShangHei_Noncommercial-Regular.otf);}
+    @font-face{font-family:'粗体1';src:url(img/MFShangHei_Noncommercial-Regular.otf);}
+         /*设置音乐*/
+        .icon_audio{background: url("img/on_off.png") no-repeat; background-size: 100% 100%; width:24px; height:24px; position:absolute; z-index: 999; top:8%; right:6%; 
+            -webkit-animation:audio_anim 2s ease-out infinite;
+         }
+        @-webkit-keyframes audio_anim {
+            0% { -webkit-transform:translate(0,0); opacity:0; }
+            30% { -webkit-transform:translate(-20px,-20px); opacity:1; }
+            100% { -webkit-transform:translate(-30px,-30px); opacity:0; }
+        }
+
+       
+        /* layout */
+        body{display:-webkit-box;display: box;-webkit-box-orient: vertical;box-orient: vertical;}
+        .content{display:-webkit-box;display: box;-webkit-box-orient: vertical;box-orient: vertical;-webkit-box-flex:1;box-flex:1;}
+        .tabs{-webkit-box-flex:1;box-flex:1;width: 100%;}
+        .tips{
+            position: absolute;
+            background: url("images/up.png") no-repeat;
+            background-size: 70% 70%;
+            top: 90%;
+            height: 24px;
+            width: 35px;
+            left: 50%;
+            text-align: center;
+            opacity: 0;
+            margin-left: -14px;
+            -webkit-animation:Topto 1.6s linear infinite;
+            -moz-animation:Topto 1.6s linear infinite;
+            -o-animation:Topto 1.6s linear infinite;
+        }
+        
+         /* tab */
+        .tabs{position: relative;overflow: hidden;}
+        .tabs ul{position: absolute;width: 100%;height: 100%;}
+        .tabs li{ width: 100%; height:100%;position: relative; }
+        .tabs .sprite{position: absolute;top: 0;left: 0%;-webkit-backface-visibility:hidden;
+        }
+        .tabs .load{
+          background-color: #ffffff;
+      
+        }
+        .tabs .load .bg{
+            position: relative;
+            top:65%;
+            background: url('img/bg_load.png') no-repeat 0 0;
+      left:9%;
+            width:100%;height:100%; vertical-align: middle; text-align: center;
+        }  
+        .tabs .load .bg1{
+            position: absolute;
+            top:65%;
+      left:9%;
+            background: url('img/bg_load1.png') no-repeat 0 0;
+            width:100%;height:100%; vertical-align: middle; text-align: center;
+            
+            z-index: 1
+        }
+        .tabs .load .bg1.show
+        { 
+        -webkit-animation:bgsprite 5s linear 1 forwards;
+        }
+        @-webkit-keyframes bgsprite
+        {   0%   {width:0px;}
+            10%  {width:0px;}
+            20%  {width:0px;}
+            30%  {width:115px;}
+            40%  {width:150px;}
+            50%  {width:185px;}
+            60%  {width:210px;}
+            70%  {width:245px;}
+            80%  {width:280px;}
+            90%  {width:315px;}
+            100% {width:350px;}
+        }
+        .tabs .load .loadcar{
+            position:absolute;
+            background: url('img/bg2_car.png') no-repeat 0 0;
+            width: 151px;
+            height: 86px;
+            top: 60%;
+            left: 10%;
+            zoom: 0.3;
+            padding-top: 3%;
+            padding-left: 5%;
+            color: #ffffff;
+            font-size: 1em;
+
+        }
+       .tabs .load .loadcar.show
+       {  -webkit-animation:carsprite 5s linear 1 forwards;
+            -moz-animation:carsprite 5s linear 1 forwards;
+            -o-animation:carsprite 5s linear forwards;
+       }
+        @-webkit-keyframes carsprite
+        {   0%   {left: 10%;}
+            10%  {left: 15%;}
+            20%  {left: 20%;}
+            30%  {left: 25%;}
+            40%  {left: 30%;}
+            50%  {left: 40%;}
+            60%  {left: 50%;}
+            70%  {left: 60%;}
+            80%  {left: 70%;}
+            90%  {left: 75%;}
+            100% {left: 80%;}
+        }
+        .tabs .tab0
+        {
+           
+        }
+          .tabs .tab0 .bg 
+        {
+            position: absolute;
+            
+            top: 10%;
+        }
+          .tabs .tab0 .tab0_img1 
+        {
+            position:absolute;
+            width: 80px;
+            height: 86px;
+            top: 76%;
+            left: 70%;
+           
+        }
+         .tabs .tab0 .tab0_img2 
+        {
+         position:absolute;
+            width: 72px;
+            height: 73px;
+           top: 63%; left:40%;
+           
+        }
+       .tabs .tab0 .tab0_img3 
+        {
+            position:absolute;
+            top: 13%;
+            left: 16%;
+           
+        } 
+        
+       
+        .tabs .tab0 .tab0_img3.show
+         {  
+              -webkit-animation:tab2_bg_sprite  5s linear 1 forwards;
+             
+         } 
+        @-webkit-keyframes tab0sprite1
+        {   0% {   -webkit-transform: skew(0deg);
+                    transform: skew(0deg);
+                  }
+            
+            25%  { -webkit-transform: skew(10deg);
+                    transform: skew(10deg);
+                  }
+            50%  { -webkit-transform: skew(0deg);
+                    transform: skew(0deg);
+                  }
+            75%  { -webkit-transform: skew(-10deg);
+                     transform: skew(-10deg);
+                   }
+            100%  {-webkit-transform: skew(0deg);
+                    transform: skew(0deg);
+                  }
+       }
+        .tabs .tab0 .tab0_img3.show
+        {  
+             -webkit-animation:tab2_bg_sprite  5s linear infinite;
+            
+        } 
+        .tabs .tab0 .tab0_img4
+        {  
+            zoom: 0.5;
+            position: absolute;
+            top: 3%;
+            
+        } 
+         .tabs .tab0 .tab0_img4.show
+        {  
+             -webkit-animation:tab0_img4_sprite  20s linear  infinite;
+            
+        } 
+          @-webkit-keyframes tab0_img4_sprite
+        {   0% {   -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                    left:0%;
+                  }
+            
+            10%  { 
+                    left:18%;
+                  }
+            20%  { 
+                    left:36%;
+                  }
+            30%  { 
+                     left:54%;
+                   }
+            40%  {
+                    left:72%;
+                  }
+            50%  {-webkit-transform: rotate(1440deg);
+                    transform: rotate(1440deg);
+                    left:90%;
+                  }
+            60% {  
+                    left:72%;
+                  }
+            
+            70%  {
+                    left:54%;
+                  }
+            80%  { 
+                    left:36%;
+                  }
+            90%  { 
+                     left:18%;
+                   }
+            100%  {-webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                    left:0%;
+                  }
+            
+       }
+        .tabs .tab1 {width: 100% ;height:100%;  background-color:#ffffff; }
+        .tabs .tab1 .tab1_bg
+        {
+            position: absolute;
+            left: 15%;
+            top: 7%;
+                            
+        }
+        .tabs .tab1 .car 
+        {
+            position:absolute;
+            background: url('img/bg2_car.png') no-repeat 0 0;
+            width: 151px;
+            height: 86px;
+            top: 70%; left: 8%;
+            zoom: 0.3;
+          z-index:2;
+        }
+      .tabs .tab1 .car.show
+        {  
+             -webkit-animation:sprite1Topto 10s linear 1 forwards;
+            -moz-animation:sprite1Topto 10s linear 1 forwards;
+ 
+            -o-animation:sprite1Topto 10s  linear 1 forwards;
+        }
+     /*
+       @-webkit-keyframes sprite1Topto
+        {   0% { top: 70%; left: 8%;  -webkit-transform:rotateZ(-40deg)}
+            24% {  -webkit-transform:rotateZ(-40deg)}
+            25%  { top: 50%; left: 48%; -webkit-transform:rotateZ(-80deg)}
+            39%  { -webkit-transform:rotateZ(-80deg)}
+            40%  { top: 32%; left: 50%;-webkit-transform:rotateZ(-100deg)}
+            69%  { -webkit-transform: rotateZ(-100deg) }
+            70%  {top: 17%; left: 45%; -webkit-transform: rotateZ(-150deg)}
+            100%  {top: 9%; left: 24%; -webkit-transform: rotateZ(-150deg)}
+       }*/
+       @-webkit-keyframes sprite1Topto
+        {   0% { top: 73%; left: 8%;  }
+           
+            25%  { top: 55%; left: 45%; }
+          
+            40%  { top: 37%; left: 47%;}
+           
+            70%  {top: 22%; left: 42%; }
+            100%  {top: 14%; left: 21%; }
+       }
+       @-webkit-keyframes tab1_sprite
+       { 0%   {opacity: 0; }
+        100%   { opacity: 1;  } 
+       }
+      .tabs .tab1 .Mask{
+        width: 100%;
+        height: 70%;
+        background: #ffffff;
+        z-index: 1;
+      }
+       .tabs .tab1 .Mask.show
+        {  
+       -webkit-animation:sprite2Topto 10s linear 1 forwards;
+             
+        }
+       @-webkit-keyframes sprite2Topto
+        {   0% { height: 70%;}
+            25%  { height: 50%;}
+            40%  { height: 30%;}
+            75%  {height: 10%;}
+           100%  {height: 0%;}
+       }
+       .tabs .tab1 .p{
+               opacity: 0;
+               width: 5rem;
+               height: 5rem;
+               position:absolute;
+               z-index:2;
+               }
+        .tabs .tab1 .bg
+        {
+           
+             background:url('img/tab1_img6.png') no-repeat 0 0;
+             z-index:2; 
+       top: 5%;
+             
+         }
+       .tabs .tab1 .p1
+       {  z-index:2;
+           background: url('img/tab1_img1.png') no-repeat 0 0;
+              background-size: 100% 100%;top: 2%; left: 2%;
+                     width: 8rem;
+               height: 8rem;
+          
+       }
+        .tabs .tab1 .p2
+       {  z-index:2;
+           background: url('img/tab1_img2.png') no-repeat 0 0;
+             background-size: 100% 100%;top: 14%; left: 61%;
+
+
+       }
+        .tabs .tab1 .p3
+       {  z-index:2;
+           background: url('img/tab1_img3.png') no-repeat 0 0;
+            background-size: 100% 100%; top: 37%; left: 65%;
+
+
+       }
+        .tabs .tab1 .p4
+       {  z-index:2;
+           background: url('img/tab1_img4.png') no-repeat 0 0;
+           background-size: 100% 100%; top: 61%;
+          left: 62%;
+
+
+       }
+        .tabs .tab1 .p5
+       {   z-index:2;
+           background: url('img/tab1_img5.png');
+            background-size: 100% 100%; top: 75%; 
+           left:6%;
+      width: 6rem;
+               height: 6rem;
+
+
+       }  
+       
+        .tabs .tab1 .p1.show
+       {  
+           -webkit-animation:flip 0.5s 8s linear 1 forwards;
+            -moz-animation:flip 0.5s 8s linear 1 forwards;
+            -o-animation:flip 0.5s 8s linear 1 forwards;
+       }
+       .tabs .tab1 .p2.show
+       {  
+           -webkit-animation:flip 0.5s 6.2s linear 1 forwards;
+            -moz-animation:flip 0.5s 6.2s linear 1 forwards;
+            -o-animation:flip 0.5s 6.2s linear 1 forwards;
+       }
+      .tabs .tab1 .p3.show
+       {  -webkit-animation:flip  0.5s 3s linear 1 forwards;
+            -moz-animation:flip  0.5s 3s linear 1 forwards;
+            -o-animation:flip  0.5s 3s linear 1 forwards;
+           }
+      .tabs .tab1 .p4.show
+       {  -webkit-animation:flip  0.5s 1.2s linear 1 forwards;
+            -moz-animation:flip  0.5s 1.2s linear 1 forwards;
+            -o-animation:flip  0.5s 1.2s linear 1 forwards;
+           }
+      .tabs .tab1 .p5.show
+       {  -webkit-animation:flip  0.5s linear 1 forwards;
+            -moz-animation:flip  0.5s linear 1 forwards;
+            -o-animation:flip  0.5s linear 1 forwards;
+      }
+      .tabs .tab1 .p6_txt.show
+       {  -webkit-animation:flip  0.5s  10s linear 1 forwards;
+            -moz-animation:flip  0.5s 10s linear 1 forwards;
+            -o-animation:flip  0.5s 10s linear 1 forwards;
+      }
+       .fontFamily{ font-family: "幼圆1","幼圆"; line-height: 0.1em; font-size:1.5rem;} 
+     
+ 
+      .fontColor{color: #EC121A;} 
+      .fontGreedColor{color: #00a850; font-size:3.0rem;} 
+      .tabs .tab1 .p5_txt{ z-index: 2;
+          position: absolute; top: 75%; left: 30%;  opacity: 0;  
+      }
+      .tabs .tab1 .p4_txt{z-index: 2;
+          position: absolute;  left: 72%; opacity: 0;  
+          top: 49%;
+      }
+       .tabs .tab1 .p3_txt{z-index: 2;
+         top: 24%;position: absolute;left: 70%; opacity: 0;  
+      }
+      .tabs .tab1 .p2_txt{
+          top: 1%;position: absolute;left: 55%; opacity: 0;  z-index: 2;
+      }
+      .tabs .tab1 .p1_txt{ 
+        top: 20%;position: absolute;left: 5%; opacity: 0;  z-index: 2;
+      }
+    .tabs .tab1 .p6_txt
+       {  z-index:2;
+          position:absolute;
+          top: 25%; left:6%;opacity: 0;  font-size:1.8rem;
+       }
+      .tabs .tab1 .p5_txt.show{ 
+         -webkit-animation:tab1_sprite   0.5s  linear 1 forwards;
+            -moz-animation:tab1_sprite  0.5s  linear 1 forwards;
+            -o-animation:tab1_sprite   0.5s  linear 1 forwards;
+       }
+       .tabs .tab1 .p4_txt.show{ 
+         -webkit-animation:tab1_sprite  1s  2.2s linear 1 forwards;
+            -moz-animation:tab1_sprite  1s 2.2s  linear 1 forwards;
+            -o-animation:tab1_sprite  1s 2.2s   linear 1 forwards;
+       }
+       .tabs .tab1 .p3_txt.show{ 
+         -webkit-animation:tab1_sprite  1s 4.2s  linear 1 forwards;
+            -moz-animation:tab1_sprite  1s 4.2s  linear 1 forwards;
+            -o-animation:tab1_sprite  1s  4.2s linear 1 forwards;
+       }
+       .tabs .tab1 .p2_txt.show{ 
+         -webkit-animation:tab1_sprite  1s 6.8s  linear 1 forwards;
+            -moz-animation:tab1_sprite  1s 6.8s  linear 1 forwards;
+            -o-animation:tab1_sprite 1s 6.8s  linear 1 forwards;
+       }
+      .tabs .tab1 .p1_txt.show{ 
+         -webkit-animation:tab1_sprite  1s 8s  linear 1 forwards;
+            -moz-animation:tab1_sprite  1s 8s  linear 1 forwards;
+            -o-animation:tab1_sprite  1s 8s  linear 1 forwards;
+       }
+      @-webkit-keyframes flip {  
+          0% {   opacity: 0;
+               
+           }  
+             
+          100% { opacity: 1;
+              
+           }  
+      }  
+     .tabs .tab2 {
+         background-color:#ffffff;  
+       } 
+     .tabs .tab2 .bg{
+          background-image: url('img/tab2_bg.png');
+          background-repeat: no-repeat;
+          width: 200px;
+          height: 202px;
+          top: 45%;
+          position: absolute;
+          left: 50%;
+           margin-left: -100px;
+          margin-top: -101px;
+          opacity: 0;
+     } 
+      .tabs .tab2 .bg.show{ 
+         -webkit-animation: tab2_bg_sprite  20s 0.2s linear infinite;
+       }
+       @-webkit-keyframes tab2_bg_sprite {  
+            0%   { opacity: 1;
+              -webkit-transform: rotate(72deg);}
+            25%   { 
+              -webkit-transform: rotate(144deg);} 
+            50%   { 
+              -webkit-transform: rotate(216deg);} 
+            75%   { 
+              -webkit-transform: rotate(288deg);} 
+            100%  { 
+              -webkit-transform: rotate(360deg);}
+       }   
+      .tabs .tab2 .tab2bg{
+       
+        width: 100%;
+        height: 30%;
+        top: 70%;
+        position: absolute;
+        left: 0;
+         
+     } 
+      .tabs .tab2 .car{
+       
+         background-image: url('img/tab2_car.png');
+          background-repeat: no-repeat;
+          width: 80px;
+          height: 47px;
+          top: 90%;
+          position: absolute;
+          left: 0%;
+        
+     } 
+      
+     .tabs .tab2 .car.show{ 
+         -webkit-animation:tab2car_sprite  4s  linear 1 forwards;
+       }
+       @-webkit-keyframes tab2car_sprite {  
+            0%   {left:0%;top: 90%;}
+            100% {left:120%;top: 90%; }
+       }   
+      .tabs .tab2 .tab2-txt1{
+          
+         
+          top: 15%;
+          position: absolute;
+          left: 10%;
+           width: 80%;
+           height: 41px;
+          opacity: 0;  
+     } 
+      .tabs .tab2 .tab2-txt2{
+         
+         
+          top: 40%;
+          position: absolute;
+          left:5%; 
+          height: 60px;
+          width:90%;
+          opacity: 0;  
+     } 
+      /*
+     .tabs .tab2 .tab2-txt2.show{ 
+         -webkit-animation:tab2-txt2_sprite 1s 0.5s  linear 1 forwards;
+       }
+       @-webkit-keyframes tab2-txt2_sprite {  
+            0%   {opacity: 0;    }
+            
+            100% { opacity: 1; }
+            
+
+       }   
+       */
+     .tabs .tab2 .tab2-txt3{
+        width: 80%;
+        height: 60px;
+        top: 60%;
+        position: absolute;
+        left: 10%;
+        opacity: 0;
+     } 
+     .tabs .tab2 .tab2-txt1.show{ 
+         -webkit-animation:icon_sprite 0.8s 0.5s linear 1 forwards;
+      }
+       .tabs .tab2 .tab2-txt2.show{ 
+         -webkit-animation:icon_sprite 0.8s 1s linear 1 forwards;
+      }
+       .tabs .tab2 .tab2-txt3.show{ 
+         -webkit-animation:icon_sprite 0.8s 1.5s linear 1 forwards;
+      }
+     .tabs .tab3 {
+         background-color:#ffffff;  
+       } 
+       
+          .tabs .tab3 .bg {
+         background-image: url('img/tab3_bg.png');
+          background-repeat: no-repeat;
+          width: 200px;
+          height: 200px;
+          top: 50%;
+          position: absolute;
+          left: 50%;
+          margin-top: -100px;
+          margin-left: -100px;
+            opacity: 0;
+       }
+       .tabs .tab3 .car {
+         background-image: url('img/tab3_earth_car.png');
+          background-repeat: no-repeat;
+          width: 200px;
+          height: 200px;
+          position: absolute;
+           top: 50%;
+          left: 50%;
+          margin-top: -100px;
+          margin-left: -100px;
+
+         
+        }
+       .tabs .tab3 .car.show{ 
+         -webkit-animation:car_sprite 8s 1s linear 1 forwards;
+       }
+       @-webkit-keyframes car_sprite {  
+            0% {-webkit-transform: rotate(0deg);}
+            20%   {-webkit-transform: rotate(72deg);}
+            40%  {-webkit-transform: rotate(144deg);}
+            60%  {-webkit-transform: rotate(216deg);}
+            80%  {-webkit-transform: rotate(288deg);}
+            100%  {-webkit-transform: rotate(360deg);}
+            
+       }   
+       .tabs .tab3 .tab3icon{ 
+          position: absolute;
+          width: 65px;
+          height: 65px;
+          opacity: 0;  
+        }
+       .tabs .tab3 .tab3icon1{background-image: url('img/tab3_img1.png');background-size:contain; width: 8rem; height: 8rem;
+          background-repeat: no-repeat; top: 28%;left: 62%;}
+       .tabs .tab3 .tab3icon2{background-image: url('img/tab3_img2.png');background-size:contain; width: 8rem; height: 8rem;
+          background-repeat: no-repeat; top: 50%;left: 69%;}
+       .tabs .tab3 .tab3icon3{background-image: url('img/tab3_img3.png');background-size:contain;width: 8rem; height: 8rem;
+          background-repeat: no-repeat;top: 64%;left: 38%;}
+       .tabs .tab3 .tab3icon4{background-image: url('img/tab3_img4.png');background-size:contain;width: 8rem; height: 8rem;
+          background-repeat: no-repeat;top: 50%;left: 9%;}
+       .tabs .tab3 .tab3icon5{background-image: url('img/tab3_img5.png');background-size:contain;width: 8rem; height: 8rem;
+          background-repeat: no-repeat;top: 28%;left: 16%;}
+      .tabs .tab3 .tab3icon1.show{ 
+         -webkit-animation:icon_sprite 0.8s 1s linear 1 forwards;
+        } 
+         .tabs .tab3 .tab3icon2.show{  
+         -webkit-animation:icon_sprite 0.8s 3s linear 1 forwards;
+        } 
+         .tabs .tab3 .tab3icon3.show{  
+         -webkit-animation:icon_sprite 0.8s 4s linear 1 forwards;
+        } 
+         .tabs .tab3 .tab3icon4.show{  
+         -webkit-animation:icon_sprite 0.8s 5.5s linear 1 forwards;
+        } 
+         .tabs .tab3 .tab3icon5.show{  
+         -webkit-animation:icon_sprite 0.8s 7s linear 1 forwards;
+        }
+        @-webkit-keyframes icon_sprite {  
+             0%   {opacity: 0; }
+             100%   { opacity: 1;  } 
+       }  
+        
+       .tabs .tab3 .txt1 {
+         
+          font-size: 2.3rem;
+          top: 3%;
+          position: absolute;
+          left: 2%;
+          opacity: 1;
+
+       
+       }
+        .tabs .tab3 .txt2 {
+         background-image: url('img/tab3_img-txt2.png');
+          background-repeat: no-repeat;
+          width: 100px;
+          height: 18px;
+          top: 48%;
+          position: absolute;
+          left: 37%;
+          opacity: 0;
+       
+       }
+      .tabs .tab3 .txt3 {
+       
+          width: 350px;
+          height: 56px;
+          top: 80%;
+          position: absolute;
+          left: 5%;
+          opacity: 0;
+         font-family: "粗体1","粗体1";
+          font-size: 2.4rem;
+          line-height: 0rem;
+      font-weight: bold; 
+       }
+       .tabs .tab3 .txt1.show{ 
+         -webkit-animation:txt1_sprite 10s  linear 1 forwards;
+        }
+        .tabs .tab3 .txt2.show{ 
+         -webkit-animation:icon_sprite 2s 7.5s linear 1 forwards;
+        }
+        .tabs .tab3 .txt3.show{ 
+         -webkit-animation:icon_sprite 2s 7.5s linear 1 forwards;
+        }
+       @-webkit-keyframes txt1_sprite {  
+             0%   { opacity: 1; }
+             50%   { opacity: 0.5;  } 
+             100%   { opacity: 0;  } 
+       }  
+        .tabs .tab3 .bg.show
+       {  -webkit-animation:tab4_sprite 2s 4s linear 1 forwards;
+        }
+        .tabs .tab3 .earth
+        {
+       
+          width: 375px;
+          height:376px;
+          top: 50%;
+          position: absolute;
+          left: 50%;
+          margin-top: -188px;
+          margin-left: -187.5px;
+         -webkit-transform:scale(0.2); 
+             -moz-transform:scale(0.2);
+            -o-transform:scale(0.2);
+            }
+         .tabs .tab3 .earth.show{ 
+         -webkit-animation:earth_sprite 8s  linear 1 forwards;
+        }
+        /*
+        .tabs .tab3 .earth1.show{ 
+         -webkit-animation:earth_sprite1 10s 2s  linear infinite;
+        }
+         .tabs .tab3 .earth2.show{ 
+         -webkit-animation:earth_sprite2 0.5s 2s linear;
+        }
+        */
+       @-webkit-keyframes earth_sprite {  
+            0% {   
+              -webkit-transform:scale(0.2); 
+            }  
+            5% {   
+              -webkit-transform:scale(0.25); 
+            } 
+            10% {   
+              -webkit-transform:scale(0.3); 
+            } 
+            15% {   
+              -webkit-transform:scale(0.35); 
+            }   
+            20% {   
+              -webkit-transform:scale(0.4); 
+            } 
+            90% {  -webkit-transform:scale(0.4); 
+              opacity: 1;
+        
+            }  
+             
+            100% {  -webkit-transform:scale(0.4); 
+              opacity: 0;
+        
+            }  
+       }  
+
+        @-webkit-keyframes earth_sprite1 {  
+            0%   {  
+                  -webkit-transform: rotate(0deg);}
+            30%  {-webkit-transform: rotate(45deg);}
+            50%  {-webkit-transform: rotate(90deg);}
+            70%  {-webkit-transform: rotate(135deg);}
+            100% {-webkit-transform: rotate(180deg);}
+       }  
+       @-webkit-keyframes earth_sprite2 {
+           0%{
+               -webkit-transform:translate(2px, 2px);
+           }
+           25%{
+               -webkit-transform:translate(-2px, -2px);
+           }
+           50%{
+               -webkit-transform:translate(0px, 0px);
+           }
+           75%{
+               -webkit-transform:translate(2px, -2px);
+           }
+           100%{
+               -webkit-transform:translate(-2px, 2px);
+           }
+       }
+      .tabs .tab4  {
+           background-color:#ffffff;  
+       }
+      .tabs .tab4 .bg {
+          width: 100%;
+          height: 80%;
+          top: 5%;
+          position: absolute;
+       }
+      .tabs .tab4 .bg-txt {
+           width: 85%;
+           height: 30%;
+           position: absolute;
+           top: 10%;
+           left: 7.5%;
+           opacity: 0;
+         }
+       .tabs .tab4 .bg-txt.show{ 
+         -webkit-animation:tab4_sprite  0.5s  linear 1 forwards;
+            -moz-animation:tab4_sprite 0.5s  linear 1 forwards;
+            -o-animation:tab4_sprite  0.5s  linear 1 forwards;
+       }
+       @-webkit-keyframes tab4_sprite {  
+          0% {   opacity: 0;
+               
+           }  
+             
+          100% { opacity: 1;
+                
+           }  
+       }  
+      .tabs .tab4 .bg-txt-time 
+      {  
+          width: 80%;
+          height: 8%;
+          position: absolute;
+          top: 50%;
+          left: 10%;
+          opacity: 0;
+      }
+        .tabs .tab4 .bg-txt-time.show{ 
+         -webkit-animation:tab4_sprite1   1s 0.8s linear 1 forwards;
+            -moz-animation:tab4_sprite1  1s  0.8s linear 1 forwards;
+            -o-animation:tab4_sprite1   1s  0.8s linear 1 forwards;
+       }
+       .tabs .tab4 .mark
+      {  
+         width: 100%;
+height: 100%;
+position: absolute;
+z-index: 1;
+background-color:rgba(75,75,75,0.6); 
+display: none;
+      } 
+         .tabs .tab4 .bg-txt-btn 
+      {  
+          position: absolute;
+          top: 80%;
+          left: 50%;
+          margin-left: -60px;
+          opacity: 0;
+        width:120px;
+        height:62px;
+      } .tabs .tab4 .bg-txt-btn.show{ 
+         -webkit-animation:tab4_sprite1   0.5s 1s linear 1 forwards;
+             -moz-animation:tab4_sprite1  0.5s 1s linear 1 forwards;
+            -o-animation:tab4_sprite1   0.5s 1s linear 1 forwards;
+       }
+       @-webkit-keyframes tab4_sprite1 {  
+          0% {   opacity: 0;
+               
+           }  
+             
+          100% { opacity: 1;
+                
+           }  
+       }  
+      .car_running{position: absolute;bottom: 0;left: 50%;z-index: 1; margin-bottom:2%;
+margin-left: -34px;}
+      .car_running_bg1{position: absolute;bottom: 0; margin-bottom:2%;}
+      .tabs .tab0 .car_running_bg2{position: absolute;top: 88%;}
+      .tabs .tab0 .car_running_bg2.show{ 
+        
+         -webkit-animation: car_runsprite 20s linear infinite;
+       }
+      .tabs .tab4 .car_running_bg2{position: absolute;top: 88%;}
+      .tabs .tab4 .car_running_bg2.show{ 
+        
+         -webkit-animation: car_runsprite 20s linear infinite;
+       }
+        .tabs .tab5 .car_running_bg2{position: absolute;top: 88%;}
+      .tabs .tab5 .car_running_bg2.show{ 
+        
+         -webkit-animation: car_runsprite 20s linear infinite;
+       }
+         @-webkit-keyframes car_runsprite {  
+            0%   {left:100%;}
+            10%   {left:80%;}
+            20%  {left:60%; }
+            30%  {left:40%; }
+            40%  {left:20%;}
+            50%  {left:0%;}
+            60%   {left:-96px;}
+            70%   {left:-196px;}
+            80%  {left:-296px; }
+            90%  {left:-496px; }
+            100%  {left:-596px;}
+       }   
+        .icon{
+                 left: 50%;
+                  margin-left: -12.5px;
+                  bottom: 5%;
+                  position: absolute;
+             }
+       .tabs .tab5 .bg{
+        width: 80%;
+        left: 10%;
+        position: absolute;
+        top: 10%;
+       }
+        .tabs .tab5 .Tabfont{
+           font-family: "幼圆1","幼圆";
+           color: #ffffff;
+       font-size: 15pt
+        }
+        .tabs .tab5 .name{top: 17%;
+position: absolute;
+left: 20%;
+}
+   .tabs .tab5 .tab5name{top: 21%;
+position: absolute;
+left: 35%;
+}      
+  .tabs .tab5 .shenfen{top: 31%;
+position: absolute;
+left: 20%;}
+    .tabs .tab5 .mod{top: 51%;
+position: absolute;
+left: 20%;}
+  .tabs .tab5 .tab5mode{top: 55%;
+position: absolute;
+left: 35%;
+}    
+        .tabs .tab5 .touzhiren{top: 39%;
+position: absolute;
+left: 20%;
+}
+  .tabs .tab5 .bg-txt-btn 
+      {  
+          position: absolute;
+          top: 80%;
+          left: 50%;
+          margin-left: -60px;
+          
+        width:120px;
+        height:62px;
+      }
+   </style>
+</head>
+<body >
+
+
+                     <input type="text" name="tab5name" class="tab5name" id="tab5name"></input>
+
+          <div>
+                    <input type="radio" name="tab5_checkBox" value="1" ><span>投资人</span> 
+          <input type="radio" name="tab5_checkBox" value="2" ><span>媒体</span>
+          <br />
+          <input type="radio" name="tab5_checkBox" value="3"><span>行业观众</span> 
+          <input type="radio" name="tab5_checkBox" value="4"><span>普通观众</p>
+                    </div>
+
+                      <input type="text" name="tab5mode" id="tab5mode" class="tab5mode"></input>
+                      <div id="btn_sure"><img src="img/tab4_img3.png"  class="bg-txt-btn sprite show"></div>
+
+
+
+ <script type="text/javascript">
+
+</script>
 </body>
 </html>
