@@ -78,48 +78,55 @@
 			var d = self._data;
 //			var locked = false;
 			var touchMove, touchEnd;
+
 			if(c.touchMove) {
-				self.wrap.addEventListener('touchstart', function(e){
+				document.addEventListener('touchstart', function(e){
+				 
 					d.pageX = e.touches[0].pageX;
 					d.pageY = e.touches[0].pageY;
 					self.wrap.style.webkitTransitionDuration = '0ms';
-					self.wrap.addEventListener('touchmove', touchMove);
-					self.wrap.addEventListener('touchend', touchEnd);
+					document.addEventListener('touchmove', touchMove);
+					document.addEventListener('touchend', touchEnd);
 					// self.wrap.addEventListener('touchcancel', touchEnd);
 				});
 			}
 			touchMove = function(e){
-				 if(e.target.id=="load")
-				 {
-				 	e.preventDefault();
-       				 return false;
-				 }
+
+			    if(e.target.id=="load")
+				{
+
+				  e.preventDefault();
+       			  return false;
+				}
+				
+
 				d.dis = e.touches[0].pageX - d.pageX;
 				d.disY = e.touches[0].pageY - d.pageY;
 
 				if(Math.abs(d.disY / d.dis) > 0.8) {
+
 					e.stopPropagation();
 					e.preventDefault();
 				}
-
-				// self.wrap.style.webkitTransform = 'translate3d(' + (d.dis - self.current * self.width) + 'px,0,0)';
-				// m.css(self.wrap, 'transform', 'translate3d(' + (d.dis - self.current * self.width) + 'px,0,0)');//x轴移动
+			 
 				m.css(self.wrap, 'transform', 'translate3d(0,' + (d.disY - self.current * self.height) + ',0)');
+				  
 			}
 			touchEnd = function() {
+				 
 				var movetype = 'disY';
 				if(d[movetype] === undefined || isNaN(d[movetype])) {
 					d[movetype] = 0;
-				}
+ 
+				} 
 
 				self.wrap.style.webkitTransitionDuration = c.animTime + 'ms';
-				self.wrap.removeEventListener('touchmove', touchMove);
-				self.wrap.removeEventListener('touchend', touchEnd);
-
+			 
 				if(!d[movetype] || (Math.abs(d[movetype]) < c.touchDis)) {
 					self.playTo(self.current);
 					return;
 				}
+
 				if(d[movetype] > 0) {
 					self.prev();
 				} else {
@@ -139,6 +146,7 @@
 		},
 
 		playTo: function(i){
+
 			var self = this;
 			var c = self.config;
 

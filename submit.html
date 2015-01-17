@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="pragram" content="no-cache" />
+    <script src="js/global.js" type="text/javascript"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="js/zepto.min.js" type="text/javascript"></script>
+  <title></title>
+  <style>
+        /* global */
+        html,body,ul{margin: 0;padding: 0; position: relative;font-family: "幼圆"}
+        ul,ol{list-style: none;}
+        html,body{width: 100%;height: 100%;overflow: hidden;
+          -webkit-user-select: none;-moz-user-select: none;-o-user-select: none;font-size: 62.5%;}
+        body{background: #f5f5f5;font:12px/21px ; color: #33234f;}
+        a{color: #33234f;text-decoration: none;}
+        a,button{-webkit-appearance:none;-moz-appearance:none;}
+        a:hover,button:hover,span:hover,div:hover{-webkit-tap-highlight-color:transparent;}
+        a{ text-decoration:none; color:#157efb; }
+        a::-webkit-focus-inner,button::-webkit-focus-inner,span::-webkit-focus-inner,div::-webkit-focus-inner{ 
+            background-color:rgba(0,0,0,0); -webkit-tap-highlight-color:rgba(0,0,0,0); }
+
+        #music_btn{position: absolute; top:3%; right:7%;z-index: 1;display: block;}
+        @font-face{font-family:'幼圆1';src:url(img/MFShangHei_Noncommercial-Regular.otf);}
+		    @font-face{font-family:'粗体1';src:url(img/MFShangHei_Noncommercial-Regular.otf);}
+         /*设置音乐*/
+        .icon_audio{background: url("img/on_off.png") no-repeat; background-size: 100% 100%; width:24px; height:24px; position:absolute; z-index: 999; top:8%; right:6%; 
+            -webkit-animation:audio_anim 2s ease-out infinite;
+         }
+        @-webkit-keyframes audio_anim {
+            0% { -webkit-transform:translate(0,0); opacity:0; }
+            30% { -webkit-transform:translate(-20px,-20px); opacity:1; }
+            100% { -webkit-transform:translate(-30px,-30px); opacity:0; }
+        }
+
+       
+        /* layout */
+        body{display:-webkit-box;display: box;-webkit-box-orient: vertical;box-orient: vertical;}
+        .content{display:-webkit-box;display: box;-webkit-box-orient: vertical;box-orient: vertical;-webkit-box-flex:1;box-flex:1;}
+        .tabs{-webkit-box-flex:1;box-flex:1;width: 100%;}
+        .tips{
+            position: absolute;
+            background: url("images/up.png") no-repeat;
+            background-size: 70% 70%;
+            top: 90%;
+            height: 24px;
+            width: 35px;
+            left: 50%;
+            text-align: center;
+            opacity: 0;
+            margin-left: -14px;
+            -webkit-animation:Topto 1.6s linear infinite;
+            -moz-animation:Topto 1.6s linear infinite;
+            -o-animation:Topto 1.6s linear infinite;
+        }
+        
+         /* tab */
+        .tabs{position: relative;overflow: hidden;}
+        .tabs ul{position: absolute;width: 100%;height: 100%;}
+        .tabs li{ width: 100%; height:100%;position: relative; }
+        .tabs .sprite{position: absolute;top: 0;left: 0%;-webkit-backface-visibility:hidden;
+        }
+
+
+      .car_running{position: absolute;bottom: 0;left: 50%;z-index: 1; margin-bottom:2%;
+        margin-left: -34px;}
+      .car_running_bg1{position: absolute;bottom: 0; margin-bottom:2%;}
+
+        .tabs .tab5 .car_running_bg2{position: absolute;top: 88%;}
+      .tabs .tab5 .car_running_bg2.show{ 
+        
+         -webkit-animation: car_runsprite 20s linear infinite;
+       }
+         @-webkit-keyframes car_runsprite {  
+            0%   {left:100%;}
+            10%   {left:80%;}
+            20%  {left:60%; }
+            30%  {left:40%; }
+            40%  {left:20%;}
+            50%  {left:0%;}
+            60%   {left:-96px;}
+            70%   {left:-196px;}
+            80%  {left:-296px; }
+            90%  {left:-496px; }
+            100%  {left:-596px;}
+       }   
+        .icon{
+          left: 50%;
+          margin-left: -12.5px;
+          bottom: 5%;
+          position: absolute;
+        }
+        .tabs .tab5 .bg{
+          width: 80%;
+          left: 10%;
+          position: absolute;
+          top: 10%;
+        }
+        .tabs .tab5 .Tabfont{
+           color: #ffffff;
+		       font-size: 15pt
+        }
+        .tabs .tab5 .name{top: 17%; position: absolute;
+           left: 20%}
+        .tabs .tab5 .tab5name{top: 21%;
+           position: absolute;
+           left: 35%;
+        }      
+	      .tabs .tab5 .shenfen{top: 31%;
+           position: absolute;
+           left: 20%;
+        }
+        .tabs .tab5 .mod{top: 51%;
+           position: absolute;
+           left: 20%;
+        }
+	      .tabs .tab5 .tab5mode{top: 55%;
+           position: absolute;
+           left: 35%;
+        }    
+        .tabs .tab5 .touzhiren{top: 39%;
+           position: absolute;
+           left: 20%;
+        }
+        .tabs .tab5 .bg-txt-btn 
+        {  
+          position: absolute;
+          top: 80%;
+          left: 50%;
+          margin-left: -60px;
+          width:120px;
+          height:62px;
+        }
+   </style>
+</head>
+<body >
+  
+    <div class="content">
+        <div class="tabs" id="scene" style="display: none;">
+            <ul>
+
+            <li class="tab5 tab">
+                    <img src="img/tab5_bg.png" class="bg"></img>
+
+                    <p class="name Tabfont">姓名:</p>
+                     <input type="text" name="tab5name" class="tab5name" id="tab5name"></input>
+                    <p class="shenfen Tabfont">参与身份:</p>
+					          <div class="touzhiren Tabfont">
+                    <input type="radio" name="tab5_checkBox" value="1" ><span>投资人</span> 
+					          <input type="radio" name="tab5_checkBox" value="2" ><span>媒体</span>
+					          <br />
+					          <input type="radio" name="tab5_checkBox" value="3"><span>行业观众</span> 
+					          <input type="radio" name="tab5_checkBox" value="4"><span>普通观众</p>
+                    </div>
+                    <p class="mod Tabfont">手机:</p>
+                      <input type="text" name="tab5mode" id="tab5mode" class="tab5mode"></input>
+                      <div id="btn_sure"><img src="img/tab4_img3.png"  class="bg-txt-btn sprite show"></div>
+                      <img class="car_running"  src="img/car_running.gif" width="68px" height="28px"></img>
+                     <img  class="car_running_bg1" src="img/car_running_bg1.png" width="100%" height="56px"></img>
+                     <img  class="car_running_bg2 sprite" src="img/car_running_bg2.png" width="596px" height="56px"></img>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+<!--    <a href="javascript:playPause();">
+ <div class="icon_audio border_anim">
+     <span class="iconaudio1"><s class="icon_audio_anim"></s></span>
+     <span class="iconaudio2"><s class="icon_audio_anim"></s></span>
+     <span class="iconaudio3"><s class="icon_audio_anim"></s></span>
+ </div>
+</a> -->
+ <script type="text/javascript">
+    
+
+ window.onload =function(){
+    document.getElementById('btn_sure').onclick=function(){
+      var name=document.getElementById('tab5name');
+      var iphone=document.getElementById('tab5mode');
+      if(name.value=="")
+      {
+        alert("请输入名字");
+        return false;
+      }
+      if(iphone.value=="")
+      {
+        alert("请输入电话");
+        return false;
+      }
+	   gameTab.playTo(4);
+      var group1 = $("[name='tab5_checkBox']").filter(":checked"); 
+      $.post("http://805.chetuobang.com/web_weixinlukuang/index.php?c=other_api&m=letter&name="+name.value+"&type="+group1.attr("value")+"&iphone="+iphone.value+"", function(){});
+      return false;
+    }
+
+    function isWeixin(){
+        var UA = navigator.userAgent;
+        // alert(UA)
+        if (/MicroMessenger/.test(UA)){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    function getOSVS(){
+        var UA = navigator.userAgent;
+        var s = UA.indexOf("OS ");
+        if(s == -1){ return false }
+        var vs = UA.substr(s+3,5);
+        return vs
+    }
+
+    var debugcode = "error:";
+    $(function(){
+        var _bg = document.getElementById('bg'),
+            _uparrw = document.getElementById('uparrw'),
+            _icon_uparrw = document.getElementById('icon_uparrw');
+
+        var isWEIXIN = isWeixin();
+        var os_vs = getOSVS();
+        var domeInitEnd = false;
+        // _uparrw.style.display = 'none';
+        // _bg.style.display = 'none';
+        document.getElementById("scene").style.display = "block";
+        var myVideo = document.querySelector('audio');
+        initTabDomo()
+        //  myVideo.addEventListener('canplaythrough',function(){
+        //     _uparrw.style.display = 'none';
+        //     _bg.style.display = 'none';
+        //     document.getElementById("scene").style.display = "block";
+        //     debugcode +="3,";
+        //     if(!domeInitEnd){
+        //         initTabDomo()
+        //     }
+        //     myVideo.play()
+        // },false)
+        document.addEventListener('WeixinJSBridgeReady', function() {
+            onBridgeReady()
+            // _uparrw.querySelector(".cur").innerHTML = "滑动进入";
+            if(os_vs >= "7_1_1"){
+                debugcode +="os_vs>=7_1_1,";
+                // _uparrw.style.display = 'block';
+                _uparrw.style.display = 'none';
+                _bg.style.display = 'none';
+                document.getElementById("scene").style.display = "block";
+                if(!domeInitEnd) {
+                    initTabDomo()
+                }
+            }
+        })
+        // document.addEventListener("touchstart",function(e){
+        //    if(!domeInitEnd){
+        //         _uparrw.style.display = 'none';
+        //         _bg.style.display = 'none';
+        //         document.getElementById("scene").style.display = "block";
+        //         initTabDomo();
+
+        //         debugcode +="4,";
+        //     }
+        //      myVideo.play();
+        // },false)
+        function playPause() {
+          var myVideo = document.querySelectorAll('audio')[0];
+          var music_btn = document.getElementById('music_btn');
+          if (myVideo.paused){
+            myVideo.play()
+            $('.icon_audio').addClass('border_anim')
+          }
+          else{
+            $('.icon_audio').removeClass('border_anim')
+          }
+        }
+        function initTabDomo(){
+          domeInitEnd = true;
+          debugcode +="5,"; 
+          gameTab = new m.Tab(
+          {
+            target: document.querySelectorAll('.tab'),
+            trigger: document.querySelectorAll('.triggers li'),
+            onchange: function(n){
+                debugcode +="7,"; 
+                if(this.target[n]){
+                    var sprites = this.target[n].querySelectorAll('.sprite');
+                     
+                    for(var i = 0; i < sprites.length; i++) {
+                        sprites[i].classList.add('show')
+                    }
+                   
+                    if(this.prevPage != window.undefined) {
+                       var sprites = this.target[this.prevPage].querySelectorAll('.sprite');
+                        for(var i = 0; i < sprites.length; i++) {
+                            sprites[i].classList.remove('show')
+                        }
+                         var divs=$(".divbg").find("div");
+                         for (var i = 0; i < divs.length; i++) {
+                           divs[i].classList.remove('show');
+                         };
+                    }
+                }
+            },
+                touchMove: true
+          });
+            debugcode +="6,"; 
+        }
+
+    })
+
+ 
+  
+//     var percent=0;
+//     function loadPage(){  
+//        $("#loadbg2")[0].style.left=$("#loadbg1")[0].offsetLeft+"px";
+//              percent=percent+10;    //每次百分比加10
+
+//              if (percent<99){                
+//                  setTimeout("loadPage()",500);  
+//              }else{
+                 
+//                }
+//       }
+   
+//     loadPage(); 
+
+//   var target = document.querySelector('.tabs .load .loadcar');
+// 	target.addEventListener('webkitAnimationEnd', end, false);     
+// 	function end() {
+
+// 		 $(".load").remove();
+// 	}
+
+// 	  var target = document.querySelector('.tabs .tab2 .tab2-txt2');
+// 	target.addEventListener('webkitAnimationEnd', show, false);     
+
+// function show(){
+// document.getElementById("tab2_light_bg").style.display="";
+// //alert(document.getElementById("div").style.display)
+}
+
+</script>
+</body>
+</html>
