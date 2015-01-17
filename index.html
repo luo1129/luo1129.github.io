@@ -1106,6 +1106,7 @@ left: 20%;
  window.onload =function(){
   
   document.getElementById('btn_sure2').onclick=function(){
+    alert("请输入名字");
   gameTab.playTo(5);
   }
 
@@ -1162,55 +1163,55 @@ return false;
         var domeInitEnd = false;
         _uparrw.style.display = 'none';
         _bg.style.display = 'none';
-        document.getElementById("scene").style.display = "block";
-        var myVideo = document.querySelector('audio');
+        // document.getElementById("scene").style.display = "block";
+        // var myVideo = document.querySelector('audio');
         initTabDomo()
-         myVideo.addEventListener('canplaythrough',function(){
-            _uparrw.style.display = 'none';
-            _bg.style.display = 'none';
-            document.getElementById("scene").style.display = "block";
-            debugcode +="3,";
-            if(!domeInitEnd){
-                initTabDomo()
-            }
-            myVideo.play()
-        },false)
-        document.addEventListener('WeixinJSBridgeReady', function() {
-            onBridgeReady()
-            // _uparrw.querySelector(".cur").innerHTML = "滑动进入";
-            if(os_vs >= "7_1_1"){
-                debugcode +="os_vs>=7_1_1,";
-                // _uparrw.style.display = 'block';
-                _uparrw.style.display = 'none';
-                _bg.style.display = 'none';
-                document.getElementById("scene").style.display = "block";
-                if(!domeInitEnd) {
-                    initTabDomo()
-                }
-            }
-        })
-        var tab0 = document.getElementById("tab0");
-        tab0.addEventListener("touchstart",function(e){
-           if(!domeInitEnd){
-                _uparrw.style.display = 'none';
-                _bg.style.display = 'none';
-                document.getElementById("scene").style.display = "block";
-                initTabDomo();
+        //  myVideo.addEventListener('canplaythrough',function(){
+        //     _uparrw.style.display = 'none';
+        //     _bg.style.display = 'none';
+        //     document.getElementById("scene").style.display = "block";
+        //     debugcode +="3,";
+        //     if(!domeInitEnd){
+        //         initTabDomo()
+        //     }
+        //     myVideo.play()
+        // },false)
+        // document.addEventListener('WeixinJSBridgeReady', function() {
+        //     onBridgeReady()
+        //     // _uparrw.querySelector(".cur").innerHTML = "滑动进入";
+        //     if(os_vs >= "7_1_1"){
+        //         debugcode +="os_vs>=7_1_1,";
+        //         // _uparrw.style.display = 'block';
+        //         _uparrw.style.display = 'none';
+        //         _bg.style.display = 'none';
+        //         document.getElementById("scene").style.display = "block";
+        //         if(!domeInitEnd) {
+        //             initTabDomo()
+        //         }
+        //     }
+        // })
+        // var tab0 = document.getElementById("tab0");
+        // tab0.addEventListener("touchstart",function(e){
+        //    if(!domeInitEnd){
+        //         _uparrw.style.display = 'none';
+        //         _bg.style.display = 'none';
+        //         document.getElementById("scene").style.display = "block";
+        //         initTabDomo();
 
-                debugcode +="4,";
-            }
-             myVideo.play();
-        },false)
-        function playPause() {
-        var myVideo = document.querySelectorAll('audio')[0];
-        var music_btn = document.getElementById('music_btn');
-        if (myVideo.paused){
-            myVideo.play()
-            $('.icon_audio').addClass('border_anim')
-        }
-        else{
-            $('.icon_audio').removeClass('border_anim')
-        }
+        //         debugcode +="4,";
+        //     }
+        //      myVideo.play();
+        // },false)
+        // function playPause() {
+        // var myVideo = document.querySelectorAll('audio')[0];
+        // var music_btn = document.getElementById('music_btn');
+        // if (myVideo.paused){
+        //     myVideo.play()
+        //     $('.icon_audio').addClass('border_anim')
+        // }
+        // else{
+        //     $('.icon_audio').removeClass('border_anim')
+        // }
     }
         function initTabDomo(){
 
