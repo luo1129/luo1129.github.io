@@ -14,7 +14,7 @@
     <meta http-equiv="Expires" content="-1" />
     <meta http-equiv="pragram" content="no-cache" />
     <script src="js/global.js" type="text/javascript"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="js/zepto.min.js" type="text/javascript"></script>
     <title></title>
     <style>
@@ -33,7 +33,7 @@
 
         #music_btn{position: absolute; top:3%; right:7%;z-index: 1;display: block;}
         @font-face{font-family:'幼圆1';src:url(img/MFShangHei_Noncommercial-Regular.otf);}
-    @font-face{font-family:'粗体1';src:url(img/MFShangHei_Noncommercial-Regular.otf);}
+		@font-face{font-family:'粗体1';src:url(img/MFShangHei_Noncommercial-Regular.otf);}
          /*设置音乐*/
         .icon_audio{background: url("img/on_off.png") no-repeat; background-size: 100% 100%; width:24px; height:24px; position:absolute; z-index: 999; top:8%; right:6%; 
             -webkit-animation:audio_anim 2s ease-out infinite;
@@ -69,7 +69,7 @@
         .tabs{position: relative;overflow: hidden;}
         .tabs ul{position: absolute;width: 100%;height: 100%;}
         .tabs li{ width: 100%; height:100%;position: relative; }
-        .tabs .sprite{position: absolute;top: 0;left: 0%;-webkit-backface-visibility:hidden;
+        .tabs .sprite{position: absolute;top: 0;left: 0%;-webkit-backface-visibility:visible;
         }
         .tabs .load{
           background-color: #ffffff;
@@ -79,13 +79,13 @@
             position: relative;
             top:65%;
             background: url('img/bg_load.png') no-repeat 0 0;
-      left:9%;
+			left:9%;
             width:100%;height:100%; vertical-align: middle; text-align: center;
         }  
         .tabs .load .bg1{
             position: absolute;
             top:65%;
-      left:9%;
+			left:9%;
             background: url('img/bg_load1.png') no-repeat 0 0;
             width:100%;height:100%; vertical-align: middle; text-align: center;
             
@@ -269,8 +269,8 @@
         {
             position:absolute;
             background: url('img/bg2_car.png') no-repeat 0 0;
-            width: 151px;
-            height: 86px;
+	          width: 151px;
+        	  height: 86px;
             top: 70%; left: 8%;
             zoom: 0.3;
           z-index:2;
@@ -285,11 +285,11 @@
      /*
        @-webkit-keyframes sprite1Topto
         {   0% { top: 70%; left: 8%;  -webkit-transform:rotateZ(-40deg)}
-            24% {  -webkit-transform:rotateZ(-40deg)}
+            24%	{  -webkit-transform:rotateZ(-40deg)}
             25%  { top: 50%; left: 48%; -webkit-transform:rotateZ(-80deg)}
-            39%  { -webkit-transform:rotateZ(-80deg)}
+          	39%  { -webkit-transform:rotateZ(-80deg)}
             40%  { top: 32%; left: 50%;-webkit-transform:rotateZ(-100deg)}
-            69%  { -webkit-transform: rotateZ(-100deg) }
+          	69%  { -webkit-transform: rotateZ(-100deg) }
             70%  {top: 17%; left: 45%; -webkit-transform: rotateZ(-150deg)}
             100%  {top: 9%; left: 24%; -webkit-transform: rotateZ(-150deg)}
        }*/
@@ -337,35 +337,35 @@
            
              background:url('img/tab1_img6.png') no-repeat 0 0;
              z-index:2; 
-       top: 5%;
+			 top: 5%;
              
          }
        .tabs .tab1 .p1
        {  z-index:2;
            background: url('img/tab1_img1.png') no-repeat 0 0;
-              background-size: 100% 100%;top: 2%; left: 2%;
-                     width: 8rem;
+	            background-size: 100% 100%;top: 2%; left: 2%;
+			               width: 8rem;
                height: 8rem;
           
        }
         .tabs .tab1 .p2
        {  z-index:2;
            background: url('img/tab1_img2.png') no-repeat 0 0;
-             background-size: 100% 100%;top: 14%; left: 61%;
+	           background-size: 100% 100%;top: 14%; left: 61%;
 
 
        }
         .tabs .tab1 .p3
        {  z-index:2;
            background: url('img/tab1_img3.png') no-repeat 0 0;
-            background-size: 100% 100%; top: 37%; left: 65%;
+	          background-size: 100% 100%; top: 37%; left: 65%;
 
 
        }
         .tabs .tab1 .p4
        {  z-index:2;
            background: url('img/tab1_img4.png') no-repeat 0 0;
-           background-size: 100% 100%; top: 61%;
+	         background-size: 100% 100%; top: 61%;
           left: 62%;
 
 
@@ -373,9 +373,9 @@
         .tabs .tab1 .p5
        {   z-index:2;
            background: url('img/tab1_img5.png');
-            background-size: 100% 100%; top: 75%; 
+	          background-size: 100% 100%; top: 75%; 
            left:6%;
-      width: 6rem;
+			width: 6rem;
                height: 6rem;
 
 
@@ -689,7 +689,7 @@
          font-family: "粗体1","粗体1";
           font-size: 2.4rem;
           line-height: 0rem;
-      font-weight: bold; 
+		  font-weight: bold; 
        }
        .tabs .tab3 .txt1.show{ 
          -webkit-animation:txt1_sprite 10s  linear 1 forwards;
@@ -867,6 +867,15 @@ margin-left: -34px;}
         
          -webkit-animation: car_runsprite 20s linear infinite;
        }
+      .tabs .tab4 .mark
+      {  
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        background-color:rgba(75,75,75,0.6); 
+        display: none;
+      }
         .tabs .tab5 .car_running_bg2{position: absolute;top: 88%;}
       .tabs .tab5 .car_running_bg2.show{ 
         
@@ -900,7 +909,7 @@ margin-left: -34px;}
         .tabs .tab5 .Tabfont{
            font-family: "幼圆1","幼圆";
            color: #ffffff;
-       font-size: 15pt
+		   font-size: 15pt
         }
         .tabs .tab5 .name{top: 17%;
 position: absolute;
@@ -910,13 +919,13 @@ left: 20%;
 position: absolute;
 left: 35%;
 }      
-  .tabs .tab5 .shenfen{top: 31%;
+	.tabs .tab5 .shenfen{top: 31%;
 position: absolute;
 left: 20%;}
     .tabs .tab5 .mod{top: 51%;
 position: absolute;
 left: 20%;}
-  .tabs .tab5 .tab5mode{top: 55%;
+	.tabs .tab5 .tab5mode{top: 55%;
 position: absolute;
 left: 35%;
 }    
@@ -962,7 +971,7 @@ left: 20%;
 
                 </li>
 
-                <li id="tab0" class="tab0 tab">
+                <li class="tab0 tab">
                     <img class="bg sprite" id="tab0_bg1" src="img/tab0_bg.png" width="90%" height="75%">
                     </img>
                     <img class="tab0_img1 sprite" src="img/tab0_img1.gif">
@@ -1019,7 +1028,7 @@ left: 20%;
                      <div class="p6_txt fontFamily sprite">
                         <p>地图?,实时路况?UGC?</p>
                         <p>不只如此,</p>
-            <br />
+						<br />
                         <p class="fontGreedColor">我们是最大</p>
                         <p class="fontGreedColor">的移动车主</p>
                         <p class="fontGreedColor">社区!</p>
@@ -1065,9 +1074,10 @@ left: 20%;
                     <img src="img/tab4_img2.png" class="bg-txt sprite"></img> 
                     <img src="img/tab4_img1.png" class="bg-txt-time sprite"></img>
                     <img class="car_running"  src="img/car_running.gif" width="68px" height="28px"></img>
-                     <img  class="car_running_bg1" src="img/car_running_bg1.png" width="100%" height="56px"></img>
-                     <img  class="car_running_bg2 sprite" src="img/car_running_bg2.png" width="596px" height="56px"></img>
-
+                    <img  class="car_running_bg1" src="img/car_running_bg1.png" width="100%" height="56px"></img>
+                    <img  class="car_running_bg2 sprite" src="img/car_running_bg2.png" width="596px" height="56px"></img>
+                    <div class="mark" id="mark">
+                    <img class="share" src="img/invite_mask.png" width="100%"></img>
                 </li>
             <li class="tab5 tab">
                     <img src="img/tab5_bg.png" class="bg"></img>
@@ -1075,12 +1085,12 @@ left: 20%;
                     <p class="name Tabfont">姓名:</p>
                      <input type="text" name="tab5name" class="tab5name" id="tab5name"></input>
                     <p class="shenfen Tabfont">参与身份:</p>
-          <div class="touzhiren Tabfont">
+					<div class="touzhiren Tabfont">
                     <input type="radio" name="tab5_checkBox" value="1" ><span>投资人</span> 
-          <input type="radio" name="tab5_checkBox" value="2" ><span>媒体</span>
-          <br />
-          <input type="radio" name="tab5_checkBox" value="3"><span>行业观众</span> 
-          <input type="radio" name="tab5_checkBox" value="4"><span>普通观众</p>
+					<input type="radio" name="tab5_checkBox" value="2" ><span>媒体</span>
+					<br />
+					<input type="radio" name="tab5_checkBox" value="3"><span>行业观众</span> 
+					<input type="radio" name="tab5_checkBox" value="4"><span>普通观众</p>
                     </div>
                     <p class="mod Tabfont">手机:</p>
                       <input type="text" name="tab5mode" id="tab5mode" class="tab5mode"></input>
@@ -1092,7 +1102,7 @@ left: 20%;
             </ul>
         </div>
     </div>
-   <div style="height:0px;overflow:hidden;">
+   <div style="height:0px;overflow:hidden;"><audio id="myaudio"  src="mic1.mp3" loop="loop" autoplay="autoplay"></audio></div>
 <a href="javascript:playPause();">
     <div class="icon_audio border_anim">
         <span class="iconaudio1"><s class="icon_audio_anim"></s></span>
@@ -1104,34 +1114,41 @@ left: 20%;
     
 
  window.onload =function(){
+    function alertShare(){
+      document.getElementById("mark").style.display="block";
+    }
   
-  document.getElementById('btn_sure2').onclick=function(){
-  gameTab.playTo(5);
-  }
+    document.getElementById('btn_sure2').onclick=function(){
+      // alertShare();
+	    gameTab.playTo(5);
+    }
+
+    document.getElementById('mark').onclick=function(){
+       document.getElementById("mark").style.display="none";
+    }
 
 
-document.getElementById('btn_sure').onclick=function(){
+    document.getElementById('btn_sure').onclick=function(){
   
-  var name=document.getElementById('tab5name');
-  var iphone=document.getElementById('tab5mode');
-  if(name.value=="")
-  {
-    alert("请输入名字");
-    return false;
-  }
-  if(iphone.value=="")
-  {
-    alert("请输入电话");
-     return false;
-  }
-  gameTab.playTo(4);
-  var group1 = $("[name='tab5_checkBox']").filter(":checked"); 
-  $.post("http://805.chetuobang.com/web_weixinlukuang/index.php?c=other_api&m=letter&name="+name.value+"&type="+group1.attr("value")+"&iphone="+iphone.value+"", function(){
-
- });
-  alert("谢谢您的参与，\n我们期待您的光临！"); 
-return false;
-}
+      var name=document.getElementById('tab5name');
+      var iphone=document.getElementById('tab5mode');
+      if(name.value=="")
+      {
+          alert("请输入名字");
+          return false;
+      }
+      if(iphone.value=="")
+      {
+          alert("请输入电话");
+          return false;
+      }
+	    gameTab.playTo(4);
+      var group1 = $("[name='tab5_checkBox']").filter(":checked"); 
+      $.post("http://805.chetuobang.com/web_weixinlukuang/index.php?c=other_api&m=letter&name="+name.value+"&type="+group1.attr("value")+"&iphone="+iphone.value+"", function(){});
+      alertShare();
+      document.getElementById("btn_sure2").style.display="none";
+      return false;
+    }
     function isWeixin(){
         var UA = navigator.userAgent;
         // alert(UA)
@@ -1189,8 +1206,7 @@ return false;
                 }
             }
         })
-        var tab0 = document.getElementById("tab0");
-        tab0.addEventListener("touchstart",function(e){
+        document.addEventListener("touchstart",function(e){
            if(!domeInitEnd){
                 _uparrw.style.display = 'none';
                 _bg.style.display = 'none';
@@ -1273,14 +1289,14 @@ return false;
     loadPage(); 
 
   var target = document.querySelector('.tabs .load .loadcar');
-  target.addEventListener('webkitAnimationEnd', end, false);     
-  function end() {
+	target.addEventListener('webkitAnimationEnd', end, false);     
+	function end() {
 
-     $(".load").remove();
-  }
+		 $(".load").remove();
+	}
 
-    var target = document.querySelector('.tabs .tab2 .tab2-txt2');
-  target.addEventListener('webkitAnimationEnd', show, false);     
+	  var target = document.querySelector('.tabs .tab2 .tab2-txt2');
+	target.addEventListener('webkitAnimationEnd', show, false);     
 
 function show(){
 document.getElementById("tab2_light_bg").style.display="";
